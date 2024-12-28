@@ -1,0 +1,25 @@
+# Ignorer les répertoires de build
+build/
+cmake-build-debug/
+
+# Ignorer les fichiers de configuration générés par CMake
+CMakeCache.txt
+CMakeFiles/
+
+# Ignorer les fichiers générés lors de la compilation
+*.o
+*.obj
+*.so
+*.exe
+*.dll
+*.out
+
+# Ignorer les journaux, dumps et fichiers temporaires
+*.log
+*.tmp
+*.bak
+*.swp
+
+# Ignorer les fichiers spécifiques aux IDE
+.idea/
+.vscode/
