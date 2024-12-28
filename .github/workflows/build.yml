@@ -26,12 +26,15 @@ jobs:
           .\vcpkg\vcpkg.exe install sfml:x64-windows
           .\vcpkg\vcpkg.exe install boost-asio:x64-windows
 
-      - name: Vérifier les dépendances installées
+      - name: Verifying dependencies
         run: |
           .\vcpkg\vcpkg.exe list
 
+      - name: Vérifier la présence de SFMLConfig.cmake
+        run: dir .\vcpkg\installed\x64-windows\share\sfml\
+
       - name: Configure project with CMake
-        run: cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=.\vcpkg\scripts\buildsystems\vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-windows
+        run: cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}\vcpkg\scripts\buildsystems\vcpkg.cmake
 
       - name: Build project
         run: cmake --build build --config Release
