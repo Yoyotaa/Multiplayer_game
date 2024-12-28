@@ -1,6 +1,7 @@
 # Ignorer les répertoires de build
 build/
 cmake-build-debug/
+vcpkg/
 
 # Ignorer les fichiers de configuration générés par CMake
 CMakeCache.txt
