@@ -1,0 +1,31 @@
+name: Test Windows Build Script
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test-build-windows:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Run Windows Build Script
+        shell: pwsh
+        run: |
+          # Vérifie que le script est présent
+          if (!(Test-Path './build_windows.ps1')) {
+            Write-Error "Le script build_windows.ps1 est introuvable"
+          }
+          
+          # Rendre le script exécutable
+          Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
+          
+          # Exécute le script
+          ./build_windows.ps1
