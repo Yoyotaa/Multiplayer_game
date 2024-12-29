@@ -33,6 +33,10 @@ jobs:
       - name: Vérifier la présence de SFMLConfig.cmake
         run: dir .\vcpkg\installed\x64-windows\share\sfml\
 
+      - name: Clean build directory
+        run: |
+          if (Test-Path build) { Remove-Item -Recurse -Force build }
+
       - name: Configure project with CMake
         run: cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}\vcpkg\scripts\buildsystems\vcpkg.cmake
 
