@@ -59,9 +59,12 @@ if (Test-Path $buildDir) {
 New-Item -ItemType Directory -Path $buildDir | Out-Null
 
 # Étape 4 : Configurer le projet avec CMake
+# Configurer le projet avec CMake
 Write-Host "Configuration du projet avec CMake..."
 Set-Location $buildDir
-cmake .. -DCMAKE_TOOLCHAIN_FILE="$vcpkgDir\scripts\buildsystems\vcpkg.cmake" -DVCPKG_TARGET_TRIPLET=$triplet
+cmake .. -DCMAKE_TOOLCHAIN_FILE="$vcpkgDir\scripts\buildsystems\vcpkg.cmake" `
+         -DVCPKG_TARGET_TRIPLET=$triplet `
+         -DSFML_DIR="$vcpkgDir\installed\$triplet\share\sfml"
 if ($LASTEXITCODE -ne 0) {
     Write-Error "Erreur lors de la configuration CMake. Vérifiez les logs pour plus d'informations."
     exit 1
